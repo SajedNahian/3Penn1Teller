@@ -14,7 +14,7 @@ Info from a Wikipedia article.
 * This data will allow users to explore potential correlation between economic status compared with the weed market.
 ## D3 Feature Utilization
 * enter() weed price and income
-** Perhaps give option to vary year???
+    * Perhaps give option to vary year???
 * Displays more information when mouseover happens
 ### Similar Galleries
 * [Choropeth](https://observablehq.com/@d3/choropleth) We also aim to display a color-coded map of the United States. This gallery also may contain related information should we wish to explore the problem further. 
