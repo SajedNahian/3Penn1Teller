@@ -13,7 +13,9 @@ Info from a Wikipedia article.
 * Users can hover over states to get specific information about each state such as cost of weed within that state for the different qualities of weed, the median household income within that state, and the exact ratio of household income to weed price ratio
 * This data will allow users to explore potential correlation between economic status compared with the weed market.
 ## D3 Feature Utilization
-
+* enter() weed price and income
+** Perhaps give option to vary year???
+* Displays more information when mouseover happens
 ### Similar Galleries
 * [Choropeth](https://observablehq.com/@d3/choropleth) We also aim to display a color-coded map of the United States. This gallery also may contain related information should we wish to explore the problem further. 
 * [Topojson US Map](http://bl.ocks.org/mapsam/6083585) Nice user interaction.
