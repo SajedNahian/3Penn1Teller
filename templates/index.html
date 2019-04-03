@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<head>
+    <title>States</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<style>
+    body {
+        /* https://cmkt-image-prd.global.ssl.fastly.net/0.1.0/ps/2042056/2333/2333/m1/fpnw/wm1/31trava_pattern-.jpg?1482076852&s=46472efd8241e4ae94fc57758c953561 */
+        font-family: 'Roboto';
+        width: 60%;
+        margin: auto;
+    }
+
+    h1 {
+        font-size: 2em;
+        color: #333;
+    }
+
+    #info {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+
+    .states {
+        fill: #e5e5e5;
+        stroke: #fff;
+        stroke-width: 4px;
+        cursor: pointer;
+    }
+
+    .states:hover {
+        fill: #fff;
+    }
+
+    .darkGreen {
+        fill: #355A20;
+    }
+
+    .mediumGreen {
+        fill: #7BAA47;
+    }
+
+    .lightGreen {
+        fill: #93CB56;
+    }
+
+    .w3-container {
+        margin-top: 40px;
+        border: 2px solid black;
+    }
+</style>
+
+<body>
+    <div class="w3-container">
+        <div id="map"></div>
+        <h2 id="title">N/A</h2>
+        <p id="income"><b>Median Income:</b> $0</p>
+        <p id="price"><b>Average Weed Price:</b> $0</p>
+        <p id="affordability"><b>Weed Affordability Factor:</b> 0.00</p>
+    </div>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script>
+
+        var width = 960,
+            height = 500;
+
+        var svg = d3.select('#map').append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        var projection = d3.geo.albersUsa()
+            .scale(1000)
+            .translate([width / 2, height / 2]);
+
+        var path = d3.geo.path()
+            .projection(projection);
+
+        d3.json('https://api.myjson.com/bins/16fkc8', function (error, us) {
+            svg.selectAll('.states')
+                .data(topojson.feature(us, us.objects.usStates).features)
+                .enter()
+                .append('path')
+                .style('fill', (d, i) => {
+                    return getClass(d);
+                })
+                .attr('class', (d, i) => {
+                    return 'states';
+                })
+                .attr('d', path)
+                .on('mouseover', function (d) {
+                    console.log(d);
+                    var name = d.properties.STATE_ABBR;
+                    const weedPrice = d.properties.WEED_PRICE;
+                    const medianIncome = d.properties.MEDIAN_INCOME;
+                    document.getElementById('title').innerHTML = name;
+                    document.getElementById('income').innerHTML = '<b>Median Income:</b> $' + medianIncome;
+                    document.getElementById('price').innerHTML = '<b>Average Price of High Quality Weed:</b> $' + weedPrice;
+                    document.getElementById('affordability').innerHTML = '<b>Weed Affordability Factor:</b> ' + medianIncome / (weedPrice * 300) * 100;
+                    return
+                });
+        });
+        // var getClass = () => {
+        //     const num = Math.random();
+        //     if (num <= 1/3) {
+        //         console.log('1')
+        //         return 'states darkGreen'
+        //     } else if (num <= 2/3) {
+        //         console.log('2')
+        //         return 'states mediumGreen'
+        //     }
+        //     console.log('3')
+        //     return 'states lightGreen'
+        // }
+        var getClass = (d) => {
+            const weedPrice = d.properties.WEED_PRICE;
+            const medianIncome = d.properties.MEDIAN_INCOME;
+            const intensity = medianIncome / (weedPrice * 300) * 160;
+            console.log(rgbToHex(0, Math.round(intensity), 0));
+            console.log(Math.round(intensity))
+            return rgbToHex(0, Math.round(255 - intensity), 0);
+        }
+        function componentToHex(c) {
+            var hex = c.toString(16);
+            return hex.length == 1 ? "0" + hex : hex;
+        }
+        function rgbToHex(r, g, b) {
+            return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+        }
+    </script>
+</body>
+
+</html>
