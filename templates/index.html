@@ -50,7 +50,6 @@
 
     .w3-container {
         margin-top: 40px;
-        border: 2px solid black;
     }
 </style>
 
@@ -81,7 +80,7 @@
         var path = d3.geo.path()
             .projection(projection);
 
-        d3.json('https://api.myjson.com/bins/16fkc8', function (error, us) {
+        d3.json('https://api.myjson.com/bins/cn3jk', function (error, us) {
             svg.selectAll('.states')
                 .data(topojson.feature(us, us.objects.usStates).features)
                 .enter()
@@ -120,7 +119,7 @@
         var getClass = (d) => {
             const weedPrice = d.properties.WEED_PRICE;
             const medianIncome = d.properties.MEDIAN_INCOME;
-            const intensity = medianIncome / (weedPrice * 300) * 160;
+            const intensity = medianIncome / (weedPrice * 300) * 255;
             console.log(rgbToHex(0, Math.round(intensity), 0));
             console.log(Math.round(intensity))
             return rgbToHex(0, Math.round(255 - intensity), 0);
