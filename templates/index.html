@@ -58,7 +58,7 @@
         <div id="map"></div>
         <h2 id="title">N/A</h2>
         <p id="income"><b>Median Income:</b> $0</p>
-        <p id="price"><b>Average Cannabis Price:</b> $0</p>
+        <p id="price"><b>Average Price of High Quality Cannabis:</b> $0</p>
         <p id="affordability"><b>Cannabis Affordability Factor:</b> 0.00</p>
     </div>
 
@@ -99,8 +99,8 @@
                     const medianIncome = d.properties.MEDIAN_INCOME;
                     document.getElementById('title').innerHTML = name;
                     document.getElementById('income').innerHTML = '<b>Median Income:</b> $' + medianIncome;
-                    document.getElementById('price').innerHTML = '<b>Average Price of High Quality Weed:</b> $' + weedPrice;
-                    document.getElementById('affordability').innerHTML = '<b>Weed Affordability Factor:</b> ' + medianIncome / (weedPrice * 300) * 100;
+                    document.getElementById('price').innerHTML = '<b>Average Price of High Quality Cannabis:</b> $' + weedPrice;
+                    document.getElementById('affordability').innerHTML = '<b>Cannabis Affordability Factor:</b> ' + medianIncome / (weedPrice * 300) * 100;
                     return
                 });
         });
