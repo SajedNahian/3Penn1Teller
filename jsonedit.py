@@ -41,13 +41,13 @@ for line in canaPfileLines:
 for state in states:
     stNM='"'+abbrNm[state['properties']['STATE_ABBR']]+'"'
     if stNM != '"District Of Columbia"':
-        state['WEED_PRICE']=cana[stNM][0]
+        state["properties"]["WEED_PRICE"]=float(cana[stNM][0][1:-1])
         #------------------------may add more information here------------------
 
 
 #print(d)
-
+s= str(d).replace("'",'"')
 
 fo = open("data/us2.json",'w')
-fo.write(str(d))
+fo.write(s)
 fo.close()
