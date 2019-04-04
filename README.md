@@ -23,8 +23,8 @@ Info from a Wikipedia article.
 ![Mockup](https://i.imgur.com/SQcenBK.png)
 
 ## LAUNCH CODES:
-* $python3 -m venv <name of virtual environment>
-* $ . <name of virtual environment>/bin/activate
+* $python3 -m venv (name of virtual environment)
+* $ . (name of virtual environment)/bin/activate
 * $pip3 install wheel
 * $pip3 install flask
 * $python3 app.py
