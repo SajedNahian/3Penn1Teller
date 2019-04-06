@@ -8,7 +8,7 @@ def main():
     return render_template("index.html")
 
 @app.route('/templates/<path:path>')
-def send_js(path):
+def send_static_files(path):
     return send_from_directory('templates', path)
 
 if __name__ == "__main__":

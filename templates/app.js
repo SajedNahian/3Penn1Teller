@@ -20,85 +20,95 @@ var width = 960, height = 500;
 
 function affordabilityMap () {
 
-        var svg = d3.select('#map').append('svg')
-           .attr('width', width)
-           .attr('height', height);
+  var svg = d3.select('#map').append('svg')
+  .attr('width', width)
+  .attr('height', height);
 
-        var projection = d3.geo.albersUsa()
-           .scale(1000)
-           .translate([width / 2, height / 2]);
+  var projection = d3.geo.albersUsa()
+  .scale(1000)
+  .translate([width / 2, height / 2]);
 
-        var path = d3.geo.path()
-           .projection(projection);
-    d3.json('https://api.myjson.com/bins/121xyg', function (error, us) {
-        svg.selectAll('.states')
-            .data(topojson.feature(us, us.objects.usStates).features)
-            .enter()
-            .append('path')
-            .style('fill', (d, i) => {
-                return intensityToGreen(d.properties.MEDIAN_INCOME / (d.properties.WEED_PRICE * 300) * 255);
-            })
-            .attr('class', (d, i) => {
-                return 'states';
-            })
-            .attr('d', path)
-            .on('mouseover', generateInfoText);
-    });
-  }
+  var path = d3.geo.path()
+  .projection(projection);
+  d3.json('./templates/us.json', function (error, us) {
+    svg.selectAll('.states')
+    .data(topojson.feature(us, us.objects.usStates).features)
+    .enter()
+    .append('path')
+    .style('fill', (d, i) => {
+      return intensityToGreen(d.properties.MEDIAN_INCOME / (d.properties.WEED_PRICE * 300) * 220);
+    })
+    .attr('class', (d, i) => {
+      return 'states';
+    })
+    .attr('d', path)
+    .on('mouseover', generateInfoText)
+    .on('mouseleave', resetInfoText);
+  });
+}
+
+function resetInfoText () {
+  document.getElementById('title').innerHTML = '';
+  document.getElementById('income').innerHTML = '';
+  document.getElementById('price').innerHTML = '';
+  document.getElementById('affordability').innerHTML = '';
+}
 
 function cannabisPriceMap () {
-    var svg = d3.select('#map').append('svg')
-       .attr('width', width)
-       .attr('height', height);
+  var svg = d3.select('#map').append('svg')
+  .attr('width', width)
+  .attr('height', height);
 
-    var projection = d3.geo.albersUsa()
-       .scale(1000)
-       .translate([width / 2, height / 2]);
+  var projection = d3.geo.albersUsa()
+  .scale(1000)
+  .translate([width / 2, height / 2]);
 
-    var path = d3.geo.path()
-       .projection(projection);
-    d3.json('https://api.myjson.com/bins/121xyg', function (error, us) {
-        svg.selectAll('.states')
-            .data(topojson.feature(us, us.objects.usStates).features)
-            .enter()
-            .append('path')
-            .style('fill', (d, i) => {
-                return intensityToGreen(d.properties.WEED_PRICE/ 300 * 160);
-            })
-            .attr('class', (d, i) => {
-                return 'states';
-            })
-            .attr('d', path)
-            .on('mouseover', generateInfoText);
-    });
-  }
+  var path = d3.geo.path()
+  .projection(projection);
+  d3.json('./templates/us.json', function (error, us) {
+    svg.selectAll('.states')
+    .data(topojson.feature(us, us.objects.usStates).features)
+    .enter()
+    .append('path')
+    .style('fill', (d, i) => {
+      return intensityToGreen(d.properties.WEED_PRICE/ 300 * 160);
+    })
+    .attr('class', (d, i) => {
+      return 'states';
+    })
+    .attr('d', path)
+    .on('mouseover', generateInfoText)
+    .on('mouseleave', resetInfoText);
+  });
+}
 
 function medianIncomeMap () {
-    var svg = d3.select('#map').append('svg')
-       .attr('width', width)
-       .attr('height', height);
+  var svg = d3.select('#map').append('svg')
+  .attr('width', width)
+  .attr('height', height);
 
-    var projection = d3.geo.albersUsa()
-       .scale(1000)
-       .translate([width / 2, height / 2]);
+  var projection = d3.geo.albersUsa()
+  .scale(1000)
+  .translate([width / 2, height / 2]);
 
-    var path = d3.geo.path()
-       .projection(projection);
-    d3.json('https://api.myjson.com/bins/121xyg', function (error, us) {
-        svg.selectAll('.states')
-            .data(topojson.feature(us, us.objects.usStates).features)
-            .enter()
-            .append('path')
-            .style('fill', (d, i) => {
-                return intensityToGreen(160 * (d.properties.MEDIAN_INCOME/ 60000));
-            })
-            .attr('class', (d, i) => {
-                return 'states';
-            })
-            .attr('d', path)
-            .on('mouseover', generateInfoText);
-    });
-  }
+  var path = d3.geo.path()
+  .projection(projection);
+  d3.json('./templates/us.json', function (error, us) {
+    svg.selectAll('.states')
+    .data(topojson.feature(us, us.objects.usStates).features)
+    .enter()
+    .append('path')
+    .style('fill', (d, i) => {
+      return intensityToGreen(160 * (d.properties.MEDIAN_INCOME/ 60000));
+    })
+    .attr('class', (d, i) => {
+      return 'states';
+    })
+    .attr('d', path)
+    .on('mouseover', generateInfoText)
+    .on('mouseleave', resetInfoText);
+  });
+}
 
 var generateInfoText = (d) => {
   var name = d.properties.STATE_ABBR;
@@ -116,11 +126,12 @@ var intensityToGreen = (intensity) => {
 }
 
 function componentToHex(c) {
-    var hex = c.toString(16);
-    return hex.length == 1 ? "0" + hex : hex;
+  var hex = c.toString(16);
+  return hex.length == 1 ? "0" + hex : hex;
 }
 
 function rgbToHex(r, g, b) {
-    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }
+
 affordabilityMap()
