@@ -36,7 +36,7 @@ function affordabilityMap () {
     .enter()
     .append('path')
     .style('fill', (d, i) => {
-      return intensityToGreen(d.properties.MEDIAN_INCOME / (d.properties.WEED_PRICE * 300) * 220);
+      return intensityToGreen(d.properties.MEDIAN_INCOME / (d.properties.CANABIS_PRICE * 300) * 220);
     })
     .attr('class', (d, i) => {
       return 'states';
@@ -48,10 +48,11 @@ function affordabilityMap () {
 }
 
 function resetInfoText () {
-  document.getElementById('title').innerHTML = '';
-  document.getElementById('income').innerHTML = '';
-  document.getElementById('price').innerHTML = '';
-  document.getElementById('affordability').innerHTML = '';
+  document.getElementById('title').innerHTML = 'N/A';
+  document.getElementById('income').innerHTML = '<b>Median Income:</b> N/A';
+  document.getElementById('price').innerHTML = '<b>Average Price of High Quality Cannabis:</b> N/A';
+  document.getElementById('affordability').innerHTML = '<b>Cannabis Affordability Factor:</b> N/A';
+   document.getElementById('gini').innerHTML = '<b>Gini Coefficient:</b> N/A' ;  
 }
 
 function cannabisPriceMap () {
@@ -71,7 +72,7 @@ function cannabisPriceMap () {
     .enter()
     .append('path')
     .style('fill', (d, i) => {
-      return intensityToGreen(d.properties.WEED_PRICE/ 300 * 160);
+      return intensityToGreen(d.properties.CANABIS_PRICE/ 300 * 160);
     })
     .attr('class', (d, i) => {
       return 'states';
@@ -112,11 +113,14 @@ function medianIncomeMap () {
 
 var generateInfoText = (d) => {
   var name = d.properties.STATE_ABBR;
-  const weedPrice = d.properties.WEED_PRICE;
+  const weedPrice = d.properties.CANABIS_PRICE;
+    //console.log(weedPrice)
   const medianIncome = d.properties.MEDIAN_INCOME;
+    const gini = d.properties.GINI;  
   document.getElementById('title').innerHTML = name;
   document.getElementById('income').innerHTML = '<b>Median Income:</b> $' + medianIncome;
   document.getElementById('price').innerHTML = '<b>Average Price of High Quality Cannabis:</b> $' + weedPrice;
+    document.getElementById('gini').innerHTML = '<b>Gini Coefficient:</b>' +gini;  
   document.getElementById('affordability').innerHTML = '<b>Cannabis Affordability Factor:</b> ' + medianIncome / (weedPrice * 300) * 100;
   return
 }
