@@ -48,10 +48,10 @@ function affordabilityMap () {
 }
 
 function resetInfoText () {
-  document.getElementById('title').innerHTML = '';
-  document.getElementById('income').innerHTML = '';
-  document.getElementById('price').innerHTML = '';
-  document.getElementById('affordability').innerHTML = '';
+  document.getElementById('title').innerHTML = 'N/A';
+  document.getElementById('income').innerHTML = '<b>Median Income:</b> N/A';
+  document.getElementById('price').innerHTML = '<b>Average Price of High Quality Cannabis:</b> N/A';
+  document.getElementById('affordability').innerHTML = '<b>Cannabis Affordability Factor:</b> N/A';
 }
 
 function cannabisPriceMap () {
