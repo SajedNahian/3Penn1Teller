@@ -56,11 +56,20 @@
         text-align: center;
         font-size: 40px;
     }
+
+    .flip {
+         -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
+    }
 </style>
 
 <body>
     <div class="w3-container">
-        <h1 class="centered"><img height="100" src="https://i1.kym-cdn.com/photos/images/original/000/550/467/036.gif"> Cannabis Affordability <img height="100" src="https://i1.kym-cdn.com/photos/images/original/000/550/467/036.gif"></h1>
+        <h1 class="centered"><img height="100" class="flip" src="https://i1.kym-cdn.com/photos/images/original/000/550/467/036.gif"> Cannabis Affordability <img height="100" src="https://i1.kym-cdn.com/photos/images/original/000/550/467/036.gif"></h1>
         <label>Color by:</label>
       	<select name="mapType" id="mapType">
       	  <option value="ratio">Cannabis Affordability</option>
@@ -68,10 +77,10 @@
       	  <option value="income">Median Income</option>
       	</select>
         <div id="map"></div>
-        <h2 id="title">N/A</h2>
-        <p id="income"><b>Median Income:</b> $0</p>
-        <p id="price"><b>Average Price of High Quality Cannabis:</b> $0</p>
-        <p id="affordability"><b>Cannabis Affordability Factor:</b> 0.00</p>
+        <h2 id="title"></h2>
+        <p id="income"></p>
+        <p id="price"></p>
+        <p id="affordability"></p>
     </div>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
