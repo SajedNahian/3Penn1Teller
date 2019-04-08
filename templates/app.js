@@ -52,7 +52,10 @@ function resetInfoText () {
   document.getElementById('income').innerHTML = '<b>Median Income:</b> N/A';
   document.getElementById('price').innerHTML = '<b>Average Price of High Quality Cannabis:</b> N/A';
   document.getElementById('affordability').innerHTML = '<b>Cannabis Affordability Factor:</b> N/A';
+<<<<<<< HEAD
    document.getElementById('gini').innerHTML = '<b>Gini Coefficient:</b> N/A' ;  
+=======
+>>>>>>> b07efc86f1b4a3d9178185bdaac84245854d9d9c
 }
 
 function cannabisPriceMap () {
