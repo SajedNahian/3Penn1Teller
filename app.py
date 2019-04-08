@@ -11,6 +11,11 @@ def main():
 def send_static_files(path):
     return send_from_directory('templates', path)
 
+@app.route('/bar')
+def barGraph():
+    return render_template("bar.html")
+
+    
 if __name__ == "__main__":
     app.debug = True
     app.run()

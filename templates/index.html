@@ -58,7 +58,7 @@
     }
 
     .flip {
-         -moz-transform: scaleX(-1);
+        -moz-transform: scaleX(-1);
         -o-transform: scaleX(-1);
         -webkit-transform: scaleX(-1);
         transform: scaleX(-1);
@@ -69,23 +69,29 @@
 
 <body>
     <div class="w3-container">
-        <h1 class="centered"><img height="100" class="flip" src="https://i1.kym-cdn.com/photos/images/original/000/550/467/036.gif"> Cannabis Affordability <img height="100" src="https://i1.kym-cdn.com/photos/images/original/000/550/467/036.gif"></h1>
+        <h1 class="centered"><img height="100" class="flip"
+                src="https://i1.kym-cdn.com/photos/images/original/000/550/467/036.gif"> Cannabis Affordability <img
+                height="100" src="https://i1.kym-cdn.com/photos/images/original/000/550/467/036.gif"></h1>
         <label>Color by:</label>
-      	<select name="mapType" id="mapType">
-      	  <option value="ratio">Cannabis Affordability</option>
-      	  <option value="price">Cannabis Price</option>
-      	  <option value="income">Median Income</option>
-      	</select>
-        <h2> Darker the green, the more affordable it is. </h2>
+        <select name="mapType" id="mapType">
+            <option value="ratio">Cannabis Affordability</option>
+            <option value="price">Cannabis Price</option>
+            <option value="income">Median Income</option>
+        </select>
+        <h2 class="centered"> Darker the green, the more affordable it is. </h2>
         <div id="map"></div>
         <h2 id="title"></h2>
         <p id="income"></p>
         <p id="price"></p>
         <p id="affordability"></p>
-	<p id="gini"></p>
+        <p id="gini"></p>
+    </div>
+    <div class="graph">
+        Goto bargraph <a class="text-info" href="/bar">HERE</a>
     </div>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script type="text/javascript" src="/templates/app.js"></script>
 </body>
+
 </html>
